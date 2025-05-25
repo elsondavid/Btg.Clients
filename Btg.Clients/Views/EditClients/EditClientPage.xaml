@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="Btg.Clients.Views.EditClients.EditClientPage"
+             x:DataType="editClients:EditClientPageViewModel"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:editClients="clr-namespace:Btg.Clients.Views.EditClients"
+             xmlns:editors="clr-namespace:Syncfusion.Maui.Toolkit.NumericEntry;assembly=Syncfusion.Maui.Toolkit"
+             xmlns:textInputLayout="http://schemas.syncfusion.com/maui/toolkit"
+             Title="Cliente">
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="VerticalOptions" Value="Center" />
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto, Auto, Auto, Auto, *"
+          Margin="10"
+          RowSpacing="15">
+
+        <!--  Name  -->
+        <textInputLayout:SfTextInputLayout Grid.Row="0"
+                                           ErrorText="{Binding NameErrorMessage.Value}"
+                                           HasError="{Binding NameErrorMessage.Value, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}}"
+                                           HelperText="Obrigatório"
+                                           Hint="Nome">
+            <Entry Text="{Binding Name.Value}" />
+        </textInputLayout:SfTextInputLayout>
+
+        <!--  LastName  -->
+        <textInputLayout:SfTextInputLayout Grid.Row="1"
+                                           Hint="Sobrenome"
+                                           ReserveSpaceForAssistiveLabels="False">
+
+            <Entry Text="{Binding Lastname.Value}" />
+        </textInputLayout:SfTextInputLayout>
+
+
+        <!--  Age  -->
+        <textInputLayout:SfTextInputLayout Grid.Row="2"
+                                           Hint="Idade"
+                                           ReserveSpaceForAssistiveLabels="False">
+            <editors:SfNumericEntry HeightRequest="44"
+                                    MaximumNumberDecimalDigits="0"
+                                    TextColor="White"
+                                    Value="{Binding Age.Value}" />
+        </textInputLayout:SfTextInputLayout>
+
+
+        <!--  Address  -->
+        <textInputLayout:SfTextInputLayout Grid.Row="3"
+                                           Hint="Endereço"
+                                           ReserveSpaceForAssistiveLabels="False">
+
+            <Entry Text="{Binding Address.Value}" />
+        </textInputLayout:SfTextInputLayout>
+
+        <!--  Save  -->
+        <Button Grid.Row="4"
+                Text="Salvar"
+                Command="{Binding SaveCommand}"
+                VerticalOptions="Start"
+                HorizontalOptions="Start"
+                MinimumWidthRequest="100" />
+    </Grid>
+</ContentPage>

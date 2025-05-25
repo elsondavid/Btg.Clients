@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="Btg.Clients.Views.ListClients.ListClientPage"
+             x:DataType="listClients:ListClientPageViewModel"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:listClients="clr-namespace:Btg.Clients.Views.ListClients"
+             Title="Lista de Clientes">
+    <VerticalStackLayout Margin="10,0,10,0">
+        <Button Text="Novo Cliente"
+                Command="{Binding NewClientCommand}"
+                HorizontalOptions="Start" />
+
+        <!--  Lista de clientes  -->
+        <CollectionView ItemsSource="{Binding Clients}"
+                        Margin="0,15,0,0">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"
+                                   ItemSpacing="5" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.Header>
+                <Grid ColumnDefinitions="3*,50,6*,100, 100"
+                      ColumnSpacing="10">
+                    <Label Grid.Column="0"
+                           Text="Nome"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource Primary}" />
+
+                    <Label Grid.Column="1"
+                           Text="Idade"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource Primary}" />
+
+                    <Label Grid.Column="2"
+                           Text="Endereço"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource Primary}" />
+                </Grid>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="listClients:ListClientItem">
+                    <Grid ColumnDefinitions="3*,50,6*,100,100"
+                          ColumnSpacing="10">
+                        <!--  FullName  -->
+                        <Label Grid.Column="0"
+                               VerticalOptions="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding Name.Value}" />
+                                    <Span Text=" " />
+                                    <Span Text="{Binding Lastname.Value}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <!--  Age  -->
+                        <Label Grid.Column="1"
+                               Text="{Binding Age.Value}"
+                               VerticalOptions="Center" />
+
+                        <!--  Address  -->
+                        <Label Grid.Column="2"
+                               Text="{Binding Address.Value}"
+                               VerticalOptions="Center" />
+
+                        <!--  Edit  -->
+                        <Button Grid.Column="3"
+                                Text="Editar"
+                                Command="{Binding EditCommand}"
+                                MinimumHeightRequest="10" />
+
+                        <!--  Delete  -->
+                        <Button Grid.Column="4"
+                                Text="Excluir"
+                                BackgroundColor="OrangeRed"
+                                Command="{Binding DeleteCommand}"
+                                MinimumHeightRequest="10" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

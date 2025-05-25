@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:textInputLayout="http://schemas.syncfusion.com/maui/toolkit">
+
+    <OnPlatform x:Key="Entry-InputViewPadding"
+                x:TypeArguments="Thickness">
+        <On Platform="iOS">
+            <Thickness Bottom="12"
+                       Left="15"
+                       Right="15"
+                       Top="13" />
+        </On>
+        <On Platform="Android">
+            <Thickness Bottom="12"
+                       Left="15"
+                       Right="15"
+                       Top="13" />
+        </On>
+        <On Platform="Default">
+            <Thickness Bottom="0"
+                       Left="15"
+                       Right="15"
+                       Top="0" />
+        </On>
+    </OnPlatform>
+
+    <Style x:Key="PrimaryInput-Style"
+           TargetType="textInputLayout:SfTextInputLayout">
+        <Setter Property="ContainerType" Value="Outlined" />
+        <Setter Property="ContainerBackground" Value="Transparent" />
+        <Setter Property="InputViewPadding" Value="{StaticResource Entry-InputViewPadding}" />
+        <Setter Property="OutlineCornerRadius" Value="7" />
+        <Setter Property="IsHintAlwaysFloated" Value="True" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="Stroke" Value="{StaticResource Gray100}" />
+                            <Setter Property="HintLabelStyle">
+                                <textInputLayout:LabelStyle TextColor="{StaticResource Gray100}" />
+                            </Setter>
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Focused">
+                        <VisualState.Setters>
+                            <Setter Property="Stroke" Value="{StaticResource Primary}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Error">
+                        <VisualState.Setters>
+                            <Setter Property="Stroke" Value="{StaticResource Error}" />
+                            <Setter Property="HintLabelStyle">
+                                <textInputLayout:LabelStyle TextColor="{StaticResource Error}" />
+                            </Setter>
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style BasedOn="{StaticResource PrimaryInput-Style}"
+           TargetType="textInputLayout:SfTextInputLayout" />
+
+</ResourceDictionary>
