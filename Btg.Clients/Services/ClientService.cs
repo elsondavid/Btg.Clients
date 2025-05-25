@@ -40,8 +40,8 @@ public class ClientService : IDisposable, IClientService
             new ClientModel
             {
                 Id = Guid.CreateVersion7(DateTimeOffset.Now),
-                Name = "Eder",
-                Lastname = "Santana Cardoso",
+                Name = "Manoel",
+                Lastname = "Miguel",
                 Age = 40,
                 Address = "Rua das casas numero das portas"
             },
